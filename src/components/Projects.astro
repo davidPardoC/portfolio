@@ -1,0 +1,238 @@
+---
+const projects = [
+  {
+    title: "UPoints",
+    role: "Co-founder & CTO",
+    period: "2025 — Present",
+    description:
+      "A SaaS platform for digitizing loyalty programs. Designed a modular architecture with NestJS and PostgreSQL. Built a responsive frontend with Next.js and SSR for SEO. Optimized API performance by 40% using Redis for caching under high concurrency.",
+    stats: [
+      { label: "API perf boost", value: "+40%" },
+      { label: "Stack", value: "NestJS + Next.js" },
+    ],
+    tags: ["NestJS", "React", "Next.js", "PostgreSQL", "Redis", "SSR"],
+    link: "#",
+  },
+  {
+    title: "Rappi Compensations",
+    role: "Tech Lead",
+    period: "2021 — Present",
+    description:
+      "Internal compensation systems for the Rappi 'Super App' ecosystem. Architected and maintained critical financial tools that streamline operations and reduce manual workload. Built with Kotlin, Go, and Node.js. Integrated Kafka for real-time event processing. Optimized PostgreSQL for high-volume data. Implemented micro-frontends to decouple teams.",
+    stats: [
+      { label: "Impact", value: "Multi-country" },
+      { label: "Stack", value: "Kotlin + Go + Kafka" },
+    ],
+    tags: ["Kotlin", "Go", "Node.js", "Kafka", "PostgreSQL", "Micro-frontends"],
+    link: "#",
+  },
+];
+---
+
+<section id="projects" class="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">projects</span>
+      <h2 class="section-title">Systems I've shipped</h2>
+      <p class="section-subtitle">Not every project is public, but these two define the kind of work I do: architecting platforms that scale and leading teams to deliver.</p>
+    </div>
+
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <article class="project-card reveal">
+          <div class="project-card-inner">
+            <div class="project-header">
+              <div class="project-meta">
+                <span class="project-period">{project.period}</span>
+                <span class="project-role">{project.role}</span>
+              </div>
+              <h3 class="project-title">{project.title}</h3>
+            </div>
+
+            <p class="project-description">{project.description}</p>
+
+            <div class="project-stats">
+              {project.stats.map((stat) => (
+                <div class="stat">
+                  <span class="stat-value">{stat.value}</span>
+                  <span class="stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="project-tags">
+              {project.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: 120px 0;
+  }
+
+  .section-header {
+    margin-bottom: 72px;
+    max-width: 640px;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-copper);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .project-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    border-color: rgba(212, 165, 116, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .project-card-inner {
+    padding: 36px;
+  }
+
+  .project-header {
+    margin-bottom: 20px;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .project-period {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-copper);
+  }
+
+  .project-role {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 3px;
+  }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .project-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .project-stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-copper);
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 3px;
+  }
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card-inner {
+      padding: 32px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-grid {
+      gap: 32px;
+    }
+  }
+</style>

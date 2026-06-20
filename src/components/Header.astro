@@ -1,0 +1,195 @@
+---
+const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Stack", href: "#stack" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="logo-prompt">&gt;_</span>
+      <span class="logo-text">David Pardo</span>
+    </a>
+
+    <nav class="nav-desktop">
+      {navItems.map((item) => (
+        <a href={item.href} class="nav-link">{item.label}</a>
+      ))}
+    </nav>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile">
+    {navItems.map((item) => (
+      <a href={item.href} class="nav-link-mobile">{item.label}</a>
+    ))}
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const mobileNav = document.querySelector('.nav-mobile');
+  const hamburgerLines = document.querySelectorAll('.hamburger-line');
+  let isOpen = false;
+
+  toggle?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    mobileNav?.classList.toggle('open', isOpen);
+    hamburgerLines.forEach(line => line.classList.toggle('open', isOpen));
+  });
+
+  document.querySelectorAll('.nav-link-mobile').forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      toggle?.setAttribute('aria-expanded', 'false');
+      mobileNav?.classList.remove('open');
+      hamburgerLines.forEach(line => line.classList.remove('open'));
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .logo-prompt {
+    color: var(--accent-copper);
+    font-weight: 700;
+  }
+
+  .logo-text {
+    color: var(--text-primary);
+  }
+
+  .nav-desktop {
+    display: none;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--accent-copper);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-copper);
+    transition: width 0.2s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text-primary);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .hamburger-line.open:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .hamburger-line.open:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-line.open:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .nav-mobile.open {
+    display: flex;
+  }
+
+  .nav-link-mobile {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    padding: 8px 0;
+  }
+
+  .nav-link-mobile:hover {
+    color: var(--accent-copper);
+  }
+
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: flex;
+    }
+    .nav-toggle {
+      display: none;
+    }
+    .nav-mobile {
+      display: none !important;
+    }
+  }
+</style>

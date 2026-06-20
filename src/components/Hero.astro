@@ -1,0 +1,326 @@
+---
+const socialLinks = [
+  { label: "GitHub", href: "https://github.com/davidpardoo" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/david-pardo" },
+  { label: "Email", href: "mailto:pardodavid10@gmail.com" },
+];
+---
+
+<section id="about" class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="terminal-block">
+        <span class="terminal-prompt">&gt;_</span>
+        <span class="terminal-cursor" id="terminal-output"></span>
+        <span class="cursor-blink">|</span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="name-line">David Pardo</span>
+      </h1>
+
+      <p class="hero-title">
+        Senior Software Engineer & Tech Lead
+      </p>
+
+      <p class="hero-bio">
+        Building scalable systems at <span class="highlight">Rappi</span>. Co-founding <span class="highlight">UPoints</span>. 
+        I architect backend infrastructure, lead technical teams, and ship products that scale. 
+        5+ years of turning complex problems into clean systems.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <span class="btn-prompt">&gt;</span> Get in touch
+        </a>
+        <a href="#projects" class="btn-secondary">View projects</a>
+      </div>
+
+      <div class="hero-socials">
+        {socialLinks.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer" class="social-link">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <div class="meta-card">
+        <span class="meta-label">Location</span>
+        <span class="meta-value">Cuenca, Ecuador</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta-label">Experience</span>
+        <span class="meta-value">5+ years</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta-label">Current</span>
+        <span class="meta-value">Tech Lead @ Rappi</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta-label">Also</span>
+        <span class="meta-value">CTO @ UPoints</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const terminalLines = [
+    "booting portfolio...",
+    "loading experience: [████████░░] 80%",
+    "loading projects: [██████████] 100%",
+    "systems online. welcome.",
+  ];
+
+  const outputEl = document.getElementById('terminal-output');
+  let lineIndex = 0;
+  let charIndex = 0;
+  let currentText = '';
+
+  function typeNext() {
+    if (!outputEl) return;
+
+    if (lineIndex >= terminalLines.length) {
+      outputEl.textContent = terminalLines[terminalLines.length - 1];
+      return;
+    }
+
+    const line = terminalLines[lineIndex];
+
+    if (charIndex < line.length) {
+      currentText += line[charIndex];
+      outputEl.textContent = currentText;
+      charIndex++;
+      const delay = Math.random() * 60 + 30;
+      setTimeout(typeNext, delay);
+    } else {
+      lineIndex++;
+      charIndex = 0;
+      if (lineIndex < terminalLines.length) {
+        currentText += '\n';
+        outputEl.textContent = currentText;
+        setTimeout(typeNext, 400);
+      } else {
+        outputEl.textContent = currentText;
+      }
+    }
+  }
+
+  // Start typing after a short delay
+  setTimeout(typeNext, 600);
+</script>
+
+<style>
+  .hero {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(212, 165, 116, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(126, 181, 214, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .terminal-block {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    white-space: pre-wrap;
+    min-height: 3.2em;
+  }
+
+  .terminal-prompt {
+    color: var(--accent-copper);
+    margin-right: 4px;
+  }
+
+  .cursor-blink {
+    color: var(--accent-copper);
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    color: var(--accent-copper);
+    line-height: 1.4;
+  }
+
+  .hero-bio {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  .highlight {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--accent-copper);
+    color: var(--bg-primary);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: #c9965e;
+    transform: translateY(-1px);
+  }
+
+  .btn-prompt {
+    font-weight: 700;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-copper);
+    color: var(--accent-copper);
+  }
+
+  .hero-socials {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+  }
+
+  .social-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .social-link:hover {
+    color: var(--accent-copper);
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    align-content: start;
+  }
+
+  .meta-card {
+    padding: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s ease;
+  }
+
+  .meta-card:hover {
+    border-color: var(--accent-copper);
+  }
+
+  .meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .meta-value {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    .hero-inner {
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .hero-meta {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-meta {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

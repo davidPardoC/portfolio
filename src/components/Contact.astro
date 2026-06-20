@@ -1,0 +1,166 @@
+---
+const contactLinks = [
+  {
+    label: "Email",
+    value: "pardodavid10@gmail.com",
+    href: "mailto:pardodavid10@gmail.com",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/david-pardo",
+    href: "https://linkedin.com/in/david-pardo",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/davidpardoo",
+    href: "https://github.com/davidpardoo",
+  },
+  {
+    label: "Website",
+    value: "davidpardo.dev",
+    href: "https://davidpardo.dev",
+  },
+];
+---
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-content reveal">
+        <span class="section-eyebrow">contact</span>
+        <h2 class="section-title">Let's build something</h2>
+        <p class="contact-text">
+          I'm always interested in conversations about architecture, scaling challenges, 
+          or new opportunities. Whether you're building a team or a product, let's talk.
+        </p>
+      </div>
+
+      <div class="contact-links reveal">
+        {contactLinks.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer" class="contact-link">
+            <span class="contact-link-label">{link.label}</span>
+            <span class="contact-link-value">{link.value}</span>
+            <span class="contact-link-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 120px 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-copper);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+
+  .contact-text {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .contact-link {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: all 0.2s ease;
+  }
+
+  .contact-link:first-child {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .contact-link:hover {
+    padding-left: 8px;
+  }
+
+  .contact-link:hover .contact-link-arrow {
+    color: var(--accent-copper);
+    transform: translateX(4px);
+  }
+
+  .contact-link-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-link-value {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .contact-link-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+  }
+
+  @media (max-width: 640px) {
+    .contact-link {
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+
+    .contact-link-label {
+      grid-column: 1 / -1;
+    }
+
+    .contact-link-value {
+      grid-column: 1;
+    }
+
+    .contact-link-arrow {
+      grid-column: 2;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+  }
+</style>

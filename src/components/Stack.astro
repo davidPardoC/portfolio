@@ -1,0 +1,210 @@
+---
+const stackCategories = [
+  {
+    title: "Languages & Backend",
+    description: "Building the logic layer",
+    items: [
+      { name: "TypeScript", usedAt: "Rappi, UPoints" },
+      { name: "Node.js", usedAt: "Rappi, UPoints, Exmerdev" },
+      { name: "NestJS", usedAt: "UPoints" },
+      { name: "Kotlin", usedAt: "Rappi" },
+      { name: "Go", usedAt: "Rappi" },
+      { name: "Express.js", usedAt: "Exmerdev, Freelance" },
+    ],
+  },
+  {
+    title: "Frontend",
+    description: "Interfaces that perform",
+    items: [
+      { name: "React", usedAt: "Rappi, UPoints, Exmerdev" },
+      { name: "Next.js", usedAt: "UPoints" },
+      { name: "Gatsby", usedAt: "Exmerdev" },
+      { name: "Micro-frontends", usedAt: "Rappi" },
+    ],
+  },
+  {
+    title: "Data & Infrastructure",
+    description: "Persistence and messaging",
+    items: [
+      { name: "PostgreSQL", usedAt: "Rappi, UPoints" },
+      { name: "Redis", usedAt: "UPoints, Rappi" },
+      { name: "MongoDB", usedAt: "Freelance" },
+      { name: "Kafka", usedAt: "Rappi" },
+    ],
+  },
+  {
+    title: "DevOps & Cloud",
+    description: "Shipping and scaling",
+    items: [
+      { name: "AWS", usedAt: "Rappi, UPoints" },
+      { name: "Docker", usedAt: "Rappi, Freelance" },
+      { name: "CI/CD", usedAt: "Rappi, UPoints" },
+      { name: "Git", usedAt: "All projects" },
+    ],
+  },
+];
+---
+
+<section id="stack" class="stack">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">stack</span>
+      <h2 class="section-title">Tools of the trade</h2>
+      <p class="section-subtitle">Technologies I've used to ship production systems. No meaningless percentages — just the tools, and where I actually used them.</p>
+    </div>
+
+    <div class="stack-grid">
+      {stackCategories.map((cat) => (
+        <div class="stack-category reveal">
+          <div class="category-header">
+            <h3 class="category-title">{cat.title}</h3>
+            <p class="category-description">{cat.description}</p>
+          </div>
+          <div class="category-items">
+            {cat.items.map((item) => (
+              <div class="stack-item">
+                <span class="stack-name">{item.name}</span>
+                <span class="stack-used-at">{item.usedAt}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack {
+    padding: 120px 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .section-header {
+    margin-bottom: 72px;
+    max-width: 640px;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-copper);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .stack-category {
+    padding: 32px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+  }
+
+  .stack-category:hover {
+    border-color: rgba(212, 165, 116, 0.3);
+  }
+
+  .category-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .category-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-copper);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .category-description {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .category-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stack-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: padding 0.2s ease;
+  }
+
+  .stack-item:last-child {
+    border-bottom: none;
+  }
+
+  .stack-item:hover {
+    padding-left: 8px;
+  }
+
+  .stack-item:hover .stack-name {
+    color: var(--accent-copper);
+  }
+
+  .stack-name {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .stack-used-at {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    text-align: right;
+  }
+
+  @media (min-width: 768px) {
+    .stack-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .stack-grid {
+      gap: 32px;
+    }
+  }
+</style>
